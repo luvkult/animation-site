@@ -53,7 +53,7 @@ const Magentic = ({
       magnetButton.addEventListener("mousemove", handleMagnetMove);
       magnetButton.addEventListener("mouseout", handleMagnetOut);
     }
-    function handleMagnetOut(event: MouseEvent) {
+    function handleMagnetOut(event: Event) {
       gsap.to([magnetButton, shapka], {
         x: 0,
         y: 0,
@@ -62,12 +62,13 @@ const Magentic = ({
       });
     }
 
-    function handleMagnetMove(event: MouseEvent) {
+    function handleMagnetMove(event: Event) {
+      const mouseEvent = event as MouseEvent;
       const bounding = magnetButton.getBoundingClientRect();
       const magneticWidth =
-        (event.clientX - bounding.left) / magnetButton.offsetWidth - 0.5;
+        (mouseEvent.clientX - bounding.left) / magnetButton.offsetWidth - 0.5;
       const magneticHeight =
-        (event.clientY - bounding.top) / magnetButton.offsetHeight - 0.5;
+        (mouseEvent.clientY - bounding.top) / magnetButton.offsetHeight - 0.5;
 
       gsap.to(magnetButton, {
         x: magneticWidth * strength,

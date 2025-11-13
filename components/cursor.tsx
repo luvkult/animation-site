@@ -106,8 +106,8 @@ export function Cursor() {
 
   return (
     <>
-      <div className="cursor cursor1" ref={(el) => el && (cursorRefs.current[0] = el)}></div>
-      <div className="cursor cursor2" ref={(el) => el && (cursorRefs.current[1] = el)}></div>
+      <div className="cursor cursor1" ref={(el) => { if (el) cursorRefs.current[0] = el; }}></div>
+      <div className="cursor cursor2" ref={(el) => { if (el) cursorRefs.current[1] = el; }}></div>
     </>
   );
 }
